@@ -13,18 +13,19 @@ public class Main {
         List<String> images = asList("image1.png", "image2.png");
 
         html x = new html()
-                // Lots of predefined attributes, somewhat according to the standard:
+                // Various predefined attributes, somewhat according to the standard:
                 .id("the id")
                 .clz("theclass")
-                        // Unsupported (forgottten...) attributes can be specified explicitly:
+                // Unsupported (forgottten...) attributes can be specified explicitly:
                 .set("basedir", "http:abasdf")
-                .set("style", "display:inline")
+                // Escaping is done automatically (but probably not 100% correct):
+                .set("style", "before: \"<>&'")
                 .add(
                         new head()
-                        .add( new link()
-                                .rel( "reltype")
-                                .href( "http:/...")
-                        )
+                                .add(new link()
+                                                .rel("reltype")
+                                                .href("http:/...")
+                                )
                 ).add(
                         new body().add(
                                 new p()
@@ -35,6 +36,8 @@ public class Main {
                                         .add("asdf")
                                         .add("qwer")
                                         .add("zxcv\n1234")
+                                        // Text is escaped automatically (but probably not 100% correct):
+                                        .add( "lots of html: < > & ; \" <input />")
                                         .add(
                                                 new a()
                                                         .href("the href")

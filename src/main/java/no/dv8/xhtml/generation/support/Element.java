@@ -9,6 +9,7 @@ import java.util.*;
 public interface Element<T extends Element> extends Id<T>, Clz<T> {
 
     String EOL = "\r\n";
+    // If this is changed, Escaping must be updated!!
     char ATTR_QUOTE = '\'';
 
     String name();
@@ -50,8 +51,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T> {
     }
 
     default String escapeAttributeValue(String v) {
-        //TODO: Escape attribute values
-        return v;
+        return Escaping.escapeAttributeValue(v);
     }
 
     default T writeChildren(StringWriter sw, String prefix) {

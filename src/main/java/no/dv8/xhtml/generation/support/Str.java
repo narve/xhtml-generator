@@ -19,7 +19,6 @@ public class Str extends ElementBase<Str> {
     }
 
     public String escapeText(String s) {
-        //TODO: XML-escape the text
-        return s;
+        return Escaping.escapeText(s);
     }
 }
