@@ -2,12 +2,14 @@ package no.dv8.xhtml.generation.support;
 
 import no.dv8.xhtml.generation.attributes.Clz;
 import no.dv8.xhtml.generation.attributes.Id;
-import no.dv8.xhtml.generation.attributes.Type;
 
 import java.io.StringWriter;
 import java.util.*;
 
 public interface Element<T extends Element> extends Id<T>, Clz<T> {
+
+    String EOL = "\r\n";
+    char ATTR_QUOTE = '\'';
 
     String name();
 
@@ -38,17 +40,18 @@ public interface Element<T extends Element> extends Id<T>, Clz<T> {
         return sw.toString();
     }
 
-
-    static final String EOL = "\r\n";
-
     default T writeOpener(StringWriter sw, String prefix, boolean close) {
         sw.write(prefix + "<" + name());
 
-        //TODO: Escape attribute values (and check attribute keys perhaps?)
-        getAttributes().forEach((k, v) -> sw.write(" " + k + "='" + v + "'"));
+        getAttributes().forEach((k, v) -> sw.write(" " + k + "=" + ATTR_QUOTE + escapeAttributeValue(v) + ATTR_QUOTE));
         sw.write(close ? "/>" : ">");
         sw.write(EOL);
         return self();
+    }
+
+    default String escapeAttributeValue(String v) {
+        //TODO: Escape attribute values
+        return v;
     }
 
     default T writeChildren(StringWriter sw, String prefix) {

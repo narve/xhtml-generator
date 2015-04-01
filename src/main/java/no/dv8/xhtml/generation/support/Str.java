@@ -12,11 +12,14 @@ public class Str extends ElementBase<Str> {
     }
 
     public Str write(StringWriter sw, String prefix) {
-        //TODO: XML-escape the text
         asList( text.split( "\n" ) )
                 .stream()
-                .forEach(s -> sw.write( prefix + s + EOL ));
-//        sw.write(text + EOL);
+                .forEach(s -> sw.write( prefix + escapeText(s) + EOL ));
         return self();
+    }
+
+    public String escapeText(String s) {
+        //TODO: XML-escape the text
+        return s;
     }
 }

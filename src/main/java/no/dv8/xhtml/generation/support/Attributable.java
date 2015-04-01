@@ -15,6 +15,7 @@ public interface Attributable<T extends Attributable> {
     Map<String, String> getAttributes();
 
     default T set(String k, String v) {
+        // TODO: check attribute keys perhaps?
         getAttributes().put(k, v);
         return self();
     }
