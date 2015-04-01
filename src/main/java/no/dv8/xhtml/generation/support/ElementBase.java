@@ -2,7 +2,7 @@ package no.dv8.xhtml.generation.support;
 
 import java.util.*;
 
-public class ElementBase<T extends ElementBase> implements Element<T> {
+public abstract class ElementBase<T extends ElementBase> implements Element<T> {
 
     String elementName;
     Map<String, String> attributes = new HashMap<>();

@@ -1,12 +1,13 @@
 package no.dv8.xhtml.generation.support;
 
+import no.dv8.xhtml.generation.attributes.Clz;
 import no.dv8.xhtml.generation.attributes.Id;
 import no.dv8.xhtml.generation.attributes.Type;
 
 import java.io.StringWriter;
 import java.util.*;
 
-public interface Element<T extends Element> extends Id<T>, Type<T> {
+public interface Element<T extends Element> extends Id<T>, Clz<T> {
 
     String name();
 
@@ -42,6 +43,8 @@ public interface Element<T extends Element> extends Id<T>, Type<T> {
 
     default T writeOpener(StringWriter sw, String prefix, boolean close) {
         sw.write(prefix + "<" + name());
+
+        //TODO: Escape attribute values (and check attribute keys perhaps?)
         getAttributes().forEach((k, v) -> sw.write(" " + k + "='" + v + "'"));
         sw.write(close ? "/>" : ">");
         sw.write(EOL);
