@@ -12,6 +12,7 @@ public class Str extends ElementBase<Str> {
     }
 
     public Str write(StringWriter sw, String prefix) {
+        if( text == null ) return self();
         asList( text.split( "\n" ) )
                 .stream()
                 .forEach(s -> sw.write( prefix + escapeText(s) + EOL ));

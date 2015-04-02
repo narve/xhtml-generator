@@ -21,6 +21,7 @@ public class Escaping {
     }
 
     public static String escape(String in, Map<Character, String> escapes) {
+        if( in == null ) return null;
         StringBuilder sb = new StringBuilder();
         boolean changed = false;
         char[] ca = in.toCharArray();
