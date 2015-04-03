@@ -16,7 +16,11 @@ public interface Attributable<T extends Attributable> {
 
     default T set(String k, String v) {
         // TODO: check attribute keys perhaps?
-        getAttributes().put(k, v);
+        if( v == null ) {
+            getAttributes().remove(k);
+        } else {
+            getAttributes().put(k, v);
+        }
         return self();
     }
 
