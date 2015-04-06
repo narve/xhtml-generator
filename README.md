@@ -6,3 +6,5 @@ not prevent developers from doing crazy stuff if they feel like it. But it does 
 for generating elements and setting attribute values. 
 
 See <a href="src/main/java/no/dv8/xhtml/generation/support/Main.java">Main.java</a> for example of usage and output. 
+
+This libarary is still missing lots of elements and attributes - I add them as I need them. If you use it, please contribute whatever you miss. Pull requests are welcome :)
