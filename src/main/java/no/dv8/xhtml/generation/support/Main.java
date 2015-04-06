@@ -16,9 +16,9 @@ public class Main {
                 // Various predefined attributes, somewhat according to the standard:
                 .id("the id")
                 .clz("theclass")
-                // Unsupported (forgottten...) attributes can be specified explicitly:
+                        // Unsupported (forgottten...) attributes can be specified explicitly:
                 .set("basedir", "http:abasdf")
-                // Escaping is done automatically (but probably not 100% correct):
+                        // Escaping is done automatically (but probably not 100% correct):
                 .set("style", "before: \"<>&'")
                 .add(
                         new head()
@@ -27,48 +27,52 @@ public class Main {
                                                 .href("http:/...")
                                 )
                 ).add(
-                        new body().add(
-                                new p()
-                                        // Text can be added directly. Note that
-                                        // end-of-lines is probably not handled the
-                                        // way you want/expect, due to pretty-formatting
-                                        // the output.
-                                        .add("asdf")
-                                        .add("qwer")
-                                        .add("zxcv\n1234")
-                                        // Text is escaped automatically (but probably not 100% correct):
-                                        .add( "lots of html: < > & ; \" <input />")
-                                        .add(
-                                                new a()
-                                                        .href("the href")
-                                                        .rel("reltype")
-                                                        .add("please click me")
+                        new body()
+                                // Some constructors take the text content directly, whenever it seems appropriate:
+                                .add( new h1( "Headers!!"))
+                                .add( new p( "one paragraph").add( new span( "with some text in a span")))
+                                .add(
+                                        new p()
+                                                // Text can be added directly. Note that
+                                                // end-of-lines is probably not handled the
+                                                // way you want/expect, due to pretty-formatting
+                                                // the output.
+                                                .add("asdf")
+                                                .add("qwer")
+                                                .add("zxcv\n1234")
+                                                        // Text is escaped automatically (but probably not 100% correct):
+                                                .add("lots of html: < > & ; \" <input />")
+                                                .add(
+                                                        new a()
+                                                                .href("the href")
+                                                                .rel("reltype")
+                                                                .add("please click me")
 
-                                        ).add(
-                                        // You can add collection of elements,
-                                        // works great with lambdas
-                                        images
-                                                .stream()
-                                                .map(i -> new img().src(i))
-                                                .collect(toList())
+                                                ).add(
+                                                // You can add collection of elements,
+                                                // works great with lambdas
+                                                images
+                                                        .stream()
+                                                        .map(i -> new img().src(i))
+                                                        .collect(toList())
+                                        )
+                                                .add(
+                                                        new form()
+                                                                .action("the-web-api")
+                                                                .method("PUT")  // No html conformance checking!
+                                                                .add(
+                                                                        new input()
+                                                                                .type("thetype")
+                                                                                .value("the value")
+                                                                                        // No html conformance checking:
+                                                                                .add("shouldnt be text inside inputs...")
+                                                                )
+                                                ).add(
+                                                // Custom elements are supported for whatever I miss/forget
+                                                new Custom("ionic-section")
+                                                        .set("data-myapp", "something")
+                                        )
                                 )
-                                        .add(
-                                                new form()
-                                                        .action("the-web-api")
-                                                        .method("PUT")  // No html conformance checking!
-                                                        .add(
-                                                                new input()
-                                                                        .type("thetype")
-                                                                        .value("the value")
-                                                                                // No html conformance checking:
-                                                                        .add("shouldnt be text inside inputs...")
-                                                        )
-                                        ).add(
-                                        // Custom elements are supported for whatever I miss/forget
-                                        new Custom("ionic-section")
-                                                .set("data-myapp", "something")
-                                )
-                        )
                 );
 
 
