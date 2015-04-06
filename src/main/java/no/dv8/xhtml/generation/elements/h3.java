@@ -2,12 +2,12 @@ package no.dv8.xhtml.generation.elements;
 
 import no.dv8.xhtml.generation.support.ElementBase;
 
-public class p extends ElementBase<p> {
-    public p() {
+public class h3 extends ElementBase<h3> {
+    public h3() {
         super();
     }
-    public p( String content ) {
+    public h3(String content) {
         super();
-        add( content ); 
+        add( content );
     }
 }
