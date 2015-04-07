@@ -24,5 +24,9 @@ public interface Attributable<T extends Attributable> {
         return self();
     }
 
+    default String get(String k) {
+        return getAttributes().get(k);
+    }
+
 
 }

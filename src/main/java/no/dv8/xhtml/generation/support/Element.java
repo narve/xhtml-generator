@@ -14,11 +14,11 @@ public interface Element<T extends Element> extends Id<T>, Clz<T> {
 
     String name();
 
+    List<Element<?>> getChildren();
+
     default T self() {
         return (T) this;
     }
-
-    List<Element<?>> getChildren();
 
     default T add(Element a) {
         getChildren().add(a);
@@ -41,12 +41,12 @@ public interface Element<T extends Element> extends Id<T>, Clz<T> {
         return sw.toString();
     }
 
-    default T writeOpener(StringWriter sw, String prefix, boolean close) {
+    default T writeOpener(StringWriter sw, String prefix, boolean close, String eol) {
         sw.write(prefix + "<" + name());
 
         getAttributes().forEach((k, v) -> sw.write(" " + k + "=" + ATTR_QUOTE + escapeAttributeValue(v) + ATTR_QUOTE));
         sw.write(close ? "/>" : ">");
-        sw.write(EOL);
+        sw.write(eol);
         return self();
     }
 
@@ -66,9 +66,9 @@ public interface Element<T extends Element> extends Id<T>, Clz<T> {
 
     default T write(StringWriter sw, String prefix) {
         if (getChildren().isEmpty()) {
-            return writeOpener(sw, prefix, true);
+            return writeOpener(sw, prefix, true, EOL);
         } else {
-            writeOpener(sw, prefix, false);
+            writeOpener(sw, prefix, false, EOL);
             writeChildren(sw, prefix + "  ");
             writeEnd(sw, prefix);
             return self();
