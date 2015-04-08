@@ -16,6 +16,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T> {
 
     List<Element<?>> getChildren();
 
+    @SuppressWarnings("unchecked")
     default T self() {
         return (T) this;
     }
