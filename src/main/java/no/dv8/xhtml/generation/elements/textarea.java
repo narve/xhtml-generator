@@ -8,7 +8,7 @@ import no.dv8.xhtml.generation.support.Escaping;
 import java.io.StringWriter;
 
 /** This class does not prettify with blanks / prefixes! */
-public class textarea extends ElementBase<textarea> implements Type<textarea>, Value<textarea>, Placeholder<textarea>, Required<textarea>, ReadOnly<textarea> {
+public class textarea extends ElementBase<textarea> implements Name<textarea>, Required<textarea>, ReadOnly<textarea> {
     public textarea() {
         super();
     }
@@ -20,7 +20,7 @@ public class textarea extends ElementBase<textarea> implements Type<textarea>, V
     public textarea write(StringWriter sw, String prefix) {
         writeOpener(sw, prefix, false, "");
         writeChildren(sw, "");
-        writeEnd(sw, prefix);
+        writeEnd(sw, "");
         return self();
     }
 

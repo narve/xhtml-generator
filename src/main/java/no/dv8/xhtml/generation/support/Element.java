@@ -55,7 +55,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T> {
     }
 
     default T writeChildren(StringWriter sw, String prefix) {
-        getChildren().forEach(c -> c.write(sw, prefix + "  "));
+        getChildren().forEach(c -> c.write(sw, prefix));
         return self();
     }
 
