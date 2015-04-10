@@ -4,6 +4,18 @@
     <groupId>no.dv8.xhtml</groupId>
     <artifactId>xhtml-generator</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <name>XHTML-generator</name>
+    <description>Simple, flexible, fluid, dependency-free Java library for generating well-formed xhtml documents and fragments</description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
