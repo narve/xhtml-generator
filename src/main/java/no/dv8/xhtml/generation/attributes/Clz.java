@@ -7,4 +7,8 @@ public interface Clz<T extends Clz> extends Attributable<T> {
     default T clz(String clz) {
         return set("class", clz);
     }
+
+    default T addClz(String clz) {
+        return clz(get("class") + " " + clz);
+    }
 }
