@@ -1,11 +1,13 @@
 package no.dv8.xhtml.generation.support;
 
 import no.dv8.xhtml.generation.attributes.*;
+import no.dv8.xhtml.generation.attributes.collections.MicroData;
+import no.dv8.xhtml.generation.attributes.collections.RDFALite;
 
 import java.io.StringWriter;
 import java.util.*;
 
-public interface Element<T extends Element> extends Id<T>, Clz<T>, Itemscope<T>, Itemtype<T>, Itemid<T> {
+public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>, RDFALite<T> {
 
     String EOL = "\r\n";
     // If this is changed, Escaping must be updated!!
