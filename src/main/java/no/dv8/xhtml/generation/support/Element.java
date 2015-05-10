@@ -36,6 +36,9 @@ public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>,
         return add(new Str(s));
     }
 
+    default boolean isAutoClosable() {
+        return true;
+    }
 
     default String toHTML() {
         StringWriter sw = new StringWriter();
@@ -67,7 +70,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>,
     }
 
     default T write(StringWriter sw, String prefix) {
-        if (getChildren().isEmpty()) {
+        if (getChildren().isEmpty() && isAutoClosable()) {
             return writeOpener(sw, prefix, true, EOL);
         } else {
             writeOpener(sw, prefix, false, EOL);
