@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'no.dv8.xhtml'
+version = '1.0-SNAPSHOT'
+
+description = """XHTML-generator"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+defaultTasks 'build', 'copylib1', 'copylib2'
+
+
+task copylib1(type: Copy) {
+    from 'build/libs'
+    into '../rest-html/lib'
+}
+
+task copylib2(type: Copy) {
+    from 'build/libs'
+    into '../famcal/lib'
+}
+
+repositories {
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.hamcrest', name: 'hamcrest-all', version:'1.3'
+    testCompile group: 'junit', name: 'junit', version:'4.9'
+}
