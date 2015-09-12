@@ -11,13 +11,14 @@ public class Str extends ElementBase<Str> {
         this.text = s;
     }
 
-    public Str write(StringWriter sw, String prefix) {
+    @Override
+    public Str write(StringWriter sw, String prefix, String eol) {
         if( text == null ) {
             return self();
         }
         asList( text.split( "\n" ) )
                 .stream()
-                .forEach(s -> sw.write( prefix + escapeText(s) + EOL ));
+                .forEach(s -> sw.write( prefix + escapeText(s) + eol ));
         return self();
     }
 

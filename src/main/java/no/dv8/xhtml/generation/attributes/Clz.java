@@ -9,6 +9,10 @@ public interface Clz<T extends Clz> extends Attributable<T> {
     }
 
     default T addClz(String clz) {
-        return clz(get("class") + " " + clz);
+        if( get("class")==null) {
+            return clz(clz);
+        } else {
+            return clz(get("class") + " " + clz);
+        }
     }
 }

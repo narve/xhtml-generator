@@ -12,6 +12,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>,
     String EOL = "\r\n";
     // If this is changed, Escaping must be updated!!
     char ATTR_QUOTE = '\'';
+    int COL_BREAK_LIMIT = 50;
 
     String name();
 
@@ -42,7 +43,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>,
 
     default String toHTML() {
         StringWriter sw = new StringWriter();
-        write(sw, "");
+        write(sw, "", EOL);
         return sw.toString();
     }
 
@@ -60,7 +61,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>,
     }
 
     default T writeChildren(StringWriter sw, String prefix) {
-        getChildren().forEach(c -> c.write(sw, prefix));
+        getChildren().forEach(c -> c.write(sw, prefix, EOL));
         return self();
     }
 
@@ -69,15 +70,26 @@ public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>,
         return self();
     }
 
-    default T write(StringWriter sw, String prefix) {
+    default T write(StringWriter sw, String prefix, String eol) {
         if (getChildren().isEmpty() && isAutoClosable()) {
             return writeOpener(sw, prefix, true, EOL);
+        } else if( fitsOnSingleLine()) {
+            writeOpener(sw, prefix, false, "");
+            getChildren().get(0).write(sw, "", "");
+            writeEnd(sw,"");
+            return self();
         } else {
             writeOpener(sw, prefix, false, EOL);
             writeChildren(sw, prefix + "  ");
             writeEnd(sw, prefix);
             return self();
         }
+    }
+
+    default boolean fitsOnSingleLine() {
+        boolean singleString = getChildren().size()==1 && self().getChildren().get(0) instanceof Str;
+        int max = COL_BREAK_LIMIT - 2 * name().length();
+        return singleString && getChildren().get(0).toHTML().length() < max;
     }
 
 }
