@@ -28,7 +28,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>,
         return self();
     }
 
-    default T add(Collection<Element<?>> a) {
+    default T add(Collection<? extends Element<?>> a) {
         getChildren().addAll(a);
         return self();
     }
@@ -56,7 +56,7 @@ public interface Element<T extends Element> extends Id<T>, Clz<T>, MicroData<T>,
         return self();
     }
 
-    default String escapeAttributeValue(String v) {
+    default String escapeAttributeValue(Object v) {
         return Escaping.escapeAttributeValue(v);
     }
 

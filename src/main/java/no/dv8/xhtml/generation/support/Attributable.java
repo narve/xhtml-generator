@@ -12,11 +12,11 @@ public interface Attributable<T extends Attributable> {
 
     List<Element<?>> getChildren();
 
-    Map<String, String> getAttributes();
+    Map<Object, Object> getAttributes();
 
-    default T set(String k, String v) {
+    default T set(Object k, Object v) {
         // TODO: check attribute keys perhaps?
-        if( v == null ) {
+        if (v == null) {
             getAttributes().remove(k);
         } else {
             getAttributes().put(k, v);
@@ -24,7 +24,7 @@ public interface Attributable<T extends Attributable> {
         return self();
     }
 
-    default String get(String k) {
+    default Object get(Object k) {
         return getAttributes().get(k);
     }
 

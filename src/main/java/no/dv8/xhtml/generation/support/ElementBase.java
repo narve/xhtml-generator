@@ -5,7 +5,7 @@ import java.util.*;
 public abstract class ElementBase<T extends ElementBase> implements Element<T> {
 
     String elementName;
-    Map<String, String> attributes = new HashMap<>();
+    Map<Object, Object> attributes = new HashMap<>();
     List<Element<?>> children = new ArrayList<>();
 
     public ElementBase() {
@@ -17,7 +17,7 @@ public abstract class ElementBase<T extends ElementBase> implements Element<T> {
     }
 
     @Override
-    public Map<String, String> getAttributes() {
+    public Map<Object, Object> getAttributes() {
         return attributes;
     }
 

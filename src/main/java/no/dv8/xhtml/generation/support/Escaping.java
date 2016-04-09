@@ -12,7 +12,7 @@ public class Escaping {
     private static final Map<Character, String> attrEscapes = Collections.unmodifiableMap(attrEscapes());
     private static final Map<Character, String> textEscapes = Collections.unmodifiableMap(textEscapes());
 
-    public static String escapeAttributeValue(String in) {
+    public static String escapeAttributeValue(Object in) {
         return escape(in, attrEscapes);
     }
 
@@ -20,11 +20,11 @@ public class Escaping {
         return escape(in, textEscapes);
     }
 
-    public static String escape(String in, Map<Character, String> escapes) {
+    public static String escape(Object in, Map<Character, String> escapes) {
         if( in == null ) return null;
         StringBuilder sb = new StringBuilder();
         boolean changed = false;
-        char[] ca = in.toCharArray();
+        char[] ca = in.toString().toCharArray();
         for (int i = 0; i < ca.length; i++) {
             if (escapes.containsKey(ca[i])) {
                 sb.append(escapes.get(ca[i]));
@@ -33,10 +33,10 @@ public class Escaping {
                 sb.append(ca[i]);
             }
         }
-        return changed ? sb.toString() : in;
+        return changed ? sb.toString() : in.toString();
     }
 
-    private static Map<Character, String> attrEscapes() {
+    static Map<Character, String> attrEscapes() {
         HashMap<Character, String> m = new HashMap<>();
 //        m.put( '"', "&quot;"); Not necessary when we use ' as attribute value delimiters
         m.put('\'', "&apos;");
@@ -44,7 +44,7 @@ public class Escaping {
         return m;
     }
 
-    private static Map<Character, String> textEscapes() {
+    static Map<Character, String> textEscapes() {
         HashMap<Character, String> m = new HashMap<>();
         m.put('&', "&amp;");
         m.put('<', "&lt;");

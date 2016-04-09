@@ -3,8 +3,8 @@ package no.dv8.xhtml.generation.elements;
 import no.dv8.xhtml.generation.support.ElementBase;
 
 public class legend extends ElementBase<legend> {
-    public legend( String content ) {
+    public legend( Object content ) {
         super();
-        add( content );
+        add( content == null ? null : content.toString());
     }
 }
