@@ -6,8 +6,8 @@ public class h1 extends ElementBase<h1> {
     public h1() {
         super();
     }
-    public h1( String content ) {
+    public h1( Object content ) {
         super();
-        add( content );
+        add( String.valueOf(content ));
     }
 }

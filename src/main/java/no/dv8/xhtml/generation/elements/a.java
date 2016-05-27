@@ -9,8 +9,8 @@ public class a extends ElementBase<a> implements Rel<a>, Href<a> {
         super();
     }
 
-    public a(String content) {
+    public a(Object content) {
         super();
-        add(content);
+        add(String.valueOf( content ));
     }
 }

@@ -6,8 +6,8 @@ public class li extends ElementBase<li> {
     public li() {
         super();
     }
-    public li( String content ) {
+    public li( Object content ) {
         super();
-        add( content );
+        add( String.valueOf( content ));
     }
 }
